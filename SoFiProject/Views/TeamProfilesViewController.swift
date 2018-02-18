@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import MessageUI
 
 private let avatarCellReuse = "AvatarCell"
+private let shareRecipients = ["keatonharward@gmail.com"]
 
 class TeamProfilesViewController: UIViewController {
     
@@ -26,7 +28,9 @@ class TeamProfilesViewController: UIViewController {
 
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        deleteModeActive = !deleteModeActive
+        guard let screenshot = takeScreenshot() else { return }
+        
+        presentEmail(withAttachment: screenshot)
     }
     
     override func viewDidLoad() {
@@ -95,6 +99,12 @@ extension TeamProfilesViewController: UICollectionViewDataSource {
     }
 }
 
+extension TeamProfilesViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+}
+
 // MARK: - Private (Helper functions)
 private extension TeamProfilesViewController {
     // Update profile info for selected cell
@@ -115,5 +125,30 @@ private extension TeamProfilesViewController {
         if sender.state == .began {
             deleteModeActive = !deleteModeActive
         }
+    }
+    
+    // take a screenshot to share
+    func takeScreenshot() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, UIScreen.main.scale)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        guard let navController = self.navigationController else { return nil }
+        navController.view.drawHierarchy(in: navController.view.frame, afterScreenUpdates: true)
+        let screenshot = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return screenshot
+    }
+    
+    // present the mail view controller
+    func presentEmail(withAttachment attachment: UIImage) {
+        let composeVC = MFMailComposeViewController()
+        composeVC.mailComposeDelegate = self
+        guard let screenshotData = UIImagePNGRepresentation(attachment) as? Data else { return }
+        
+        composeVC.setToRecipients(shareRecipients)
+        composeVC.setSubject("Keaton's SoFi team project screenshot")
+        composeVC.setMessageBody("Check out this screenshot!", isHTML: false)
+        composeVC.addAttachmentData(screenshotData, mimeType: "image/png", fileName: "KeatonsTestScreenshot")
+        
+        self.present(composeVC, animated: true, completion: nil)
     }
 }
