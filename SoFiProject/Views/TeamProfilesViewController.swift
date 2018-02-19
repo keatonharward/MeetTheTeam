@@ -10,7 +10,7 @@ import UIKit
 import MessageUI
 
 private let avatarCellReuse = "AvatarCell"
-private let shareRecipients = ["keatonharward@gmail.com"]
+private let shareRecipients = ["bsoumpholphakdy@sofi.org", "mjaffa.sofi.org", "tlawson@sofi.org"]
 
 class TeamProfilesViewController: UIViewController {
     
@@ -57,6 +57,7 @@ class TeamProfilesViewController: UIViewController {
             print("Error getting team member data")
         }
         updateInfo(forTeamMember: teamMembers[0])
+        navigationController?.navigationBar.shadowImage = UIImage()
     }
 
     override func didReceiveMemoryWarning() {
@@ -130,7 +131,7 @@ private extension TeamProfilesViewController {
     // take a screenshot to share
     func takeScreenshot() -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, UIScreen.main.scale)
-        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        UIGraphicsGetCurrentContext()
         guard let navController = self.navigationController else { return nil }
         navController.view.drawHierarchy(in: navController.view.frame, afterScreenUpdates: true)
         let screenshot = UIGraphicsGetImageFromCurrentImageContext()
@@ -140,9 +141,15 @@ private extension TeamProfilesViewController {
     
     // present the mail view controller
     func presentEmail(withAttachment attachment: UIImage) {
+        if !MFMailComposeViewController.canSendMail() {
+            print("Mail services are not available")
+            return
+        }
+        
         let composeVC = MFMailComposeViewController()
         composeVC.mailComposeDelegate = self
-        guard let screenshotData = UIImagePNGRepresentation(attachment) as? Data else { return }
+        
+        guard let screenshotData = UIImagePNGRepresentation(attachment) else { return }
         
         composeVC.setToRecipients(shareRecipients)
         composeVC.setSubject("Keaton's SoFi team project screenshot")

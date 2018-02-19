@@ -25,7 +25,7 @@ class AvatarCollectionViewCell: UICollectionViewCell {
         updateCell()
     }
     
-    func updateCell() {
+    func updateCell() { 
         self.layer.cornerRadius = 12.0
         guard let teamMember = teamMember else { return }
         if teamMember.avatar == nil {

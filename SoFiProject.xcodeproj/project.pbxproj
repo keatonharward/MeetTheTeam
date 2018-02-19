@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53129068203A729C00892AAF /* TeamProfilesCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53129067203A729C00892AAF /* TeamProfilesCollectionViewLayout.swift */; };
 		53CF134B2032797000E1CCBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CF134A2032797000E1CCBE /* AppDelegate.swift */; };
 		53CF13502032797000E1CCBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53CF134E2032797000E1CCBE /* Main.storyboard */; };
 		53CF13522032797000E1CCBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53CF13512032797000E1CCBE /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		53129067203A729C00892AAF /* TeamProfilesCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamProfilesCollectionViewLayout.swift; sourceTree = "<group>"; };
 		53CF13472032797000E1CCBE /* SoFiProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoFiProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53CF134A2032797000E1CCBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		53CF134F2032797000E1CCBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				53CF13532032797000E1CCBE /* LaunchScreen.storyboard */,
 				53CF134E2032797000E1CCBE /* Main.storyboard */,
 				53CF1362203291F200E1CCBE /* TeamProfilesViewController.swift */,
+				53129067203A729C00892AAF /* TeamProfilesCollectionViewLayout.swift */,
 				53F06A5F2033A54800BC0F3F /* AvatarCollectionViewCell.swift */,
 			);
 			path = Views;
@@ -176,6 +179,7 @@
 				53F06A5A2033940500BC0F3F /* NetworkController.swift in Sources */,
 				53CF136020328DBE00E1CCBE /* TeamMember.swift in Sources */,
 				53CF1363203291F200E1CCBE /* TeamProfilesViewController.swift in Sources */,
+				53129068203A729C00892AAF /* TeamProfilesCollectionViewLayout.swift in Sources */,
 				53CF134B2032797000E1CCBE /* AppDelegate.swift in Sources */,
 				53F06A602033A54800BC0F3F /* AvatarCollectionViewCell.swift in Sources */,
 			);
