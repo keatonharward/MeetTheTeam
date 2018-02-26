@@ -10,7 +10,7 @@ import UIKit
 import MessageUI
 
 private let avatarCellReuse = "AvatarCell"
-private let shareRecipients = ["bsoumpholphakdy@sofi.org", "mjaffa.sofi.org", "tlawson@sofi.org"]
+private let shareRecipients = ["some@email.com"]
 
 class TeamProfilesViewController: UIViewController {
     
